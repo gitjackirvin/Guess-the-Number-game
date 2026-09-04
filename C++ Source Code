@@ -1,0 +1,123 @@
+// This is all the dependecies that the program requires to function
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+// This is the start of the program
+int main() 
+{
+    /* answer is either yes or no and name is your name
+    the integer number is the randomly generated number and rule is how it decides between
+    either saying if the number is even or odd or telling you its multiples
+    */
+
+    // This is all the strings and integers of the program
+    string answer;
+    string name;
+    int number;
+    int rule;
+    int multiple;
+    int guess;
+
+do
+{   // This gives you an introduction and asks if you are ready or not and involves string answer
+    cout << "Welcome to the number guessing game!" << endl;
+    cout << "I will tell you a range your number will be inside and some additional information about it, you will have ten tries to guess it, are you ready? (yes/no): ";
+    cin >> answer;
+
+    // system ("cls"); clears the output so you dont see the entire guessing history
+    system("cls");
+
+    // This asks for your name then saves it as string name
+    cout << "Let's start with your name, please type out your name: ";
+    cin >> name;
+
+    system("cls");
+
+    // This section below is how the random number is generated
+    srand(time(0));
+    /* 850 + 51 was picked because it was originally 900 + 1
+    that caused numbers under 50 to be picked and made negative numbers appear in the range */
+    number = rand() % 850 + 51;
+
+    // This is how a random multiple is generated
+    multiple = rand() % 8 + 2;
+
+    // This is how a random rule is picked
+    rule = rand() % 2 + 1;
+
+    // This is the number that is generated and if it is even or odd or the multiples of it
+    cout << "Hello " << name << endl;
+    cout << "Your number is going to be between " << number - 50 << " and " << number + 50;
+
+
+    // This section picks either rule one or rule two (multiples or even and odd)
+    if (rule == 1)
+    {
+    if (number % 2 == 0)
+    {
+    cout << " and is even." << endl;
+    }
+    else
+    {
+    cout << " and is odd." << endl;
+    }
+
+    }
+    /* This picks a random number from 2 - 9 and checks if it is a multiple of the randomly
+    generated number, if it is, then it is picked as the multiple to be displayed,
+    I picked this method because earlier I used else if which meant the first match it would pick
+    as the multiple so even even number would match to 2.
+    */
+    else if (rule == 2)
+    {
+    while (number % multiple != 0)
+    {
+        multiple = rand() % 8 + 2;
+    }
+    cout << " and it is a multiple of " << multiple << endl;
+    }
+
+int guesses = 0;
+
+while (guesses < 10)
+{
+    cout << "What is your guess? ";
+    cin >> guess;
+
+    guesses++;
+
+    if (guess == number)
+    {
+        cout << "You won!" << endl;
+        break;
+    }
+    else if (guess < number)
+    {
+        cout << "Too low. Try again!" << endl;
+    }
+    else
+    {
+        cout << "Too high. Try again!" << endl;
+    }
+}
+
+if (guesses == 10 && guess != number && guess == number)
+{
+    cout << "You used all 10 guesses. You lost!" << endl;
+}
+
+    cout << "Would you like to try again? (yes/no): ";
+    cin >> answer;
+
+} // Closes the prompt loop if you want to start again after a loss or win
+
+while (answer == "yes");
+
+return 0;
+
+}
+// This is the end of the program}
+  
