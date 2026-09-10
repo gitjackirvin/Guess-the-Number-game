@@ -1,4 +1,4 @@
-// This is all the dependecies that the program requires to function
+// This is all the dependencies that the program requires to function
 #include <iostream>
 #include <string>
 #include <cstdlib>
